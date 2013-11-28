@@ -1,0 +1,100 @@
+body {
+  padding-top: 2px;
+  margin-top: 0px;
+  padding-bottom: 20px;
+}
+.container
+{
+  margin-top: 0px;
+  padding-top:0px;
+  width: 1280px;
+}
+.navbar {
+  margin-bottom: 20px;
+}
+
+#nav {
+
+	float: left;
+
+}
+#footer {
+	margin-top: 2em;
+}
+.container h1 a span.logo {
+	height: 46px;
+}
+.logo {
+  display: block;
+  float: left;
+  background-image: url(munstrap.png);
+  background-repeat: no-repeat;  
+  width: 46px;
+  height: 46px;
+  padding-right: 6px;
+  margin-top: -0.1em;
+  padding-bottom: 0px;
+}
+#branding {
+	height: 48px;
+}
+#branding h1 a {
+	color: #000000;
+	margin-left: 60px;
+}
+.last {
+	margin-bottom: 1em;
+}
+h2 {
+	color:#800080;
+}
+span.domain a {
+	font-size: 1.4em;	
+	color: #660066;
+}
+span.host a {
+	font-size: 1.1em;
+	color: #800080;
+}
+span.service a {
+}
+
+ul.groupview, ul.groupview ul {
+	list-style-type: none;
+}
+ul.groupview li span.domain:before, #content ul li span.domain:before  {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+ content: "\e118";
+ font-size: 1em; 
+ padding-right: 1em;
+}
+ul.groupview li span.host:before, #content ul ul li span.host:before {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e080";
+  font-size: 1em; 
+  padding-right: 1em;
+}
+#content ul, #content ul ul, #content ul ul ul {
+	list-style-type: none;
+}
+#content ul ul ul { 
+ list-style-type: disc;
+ font-size: 1em; 
+ padding-right: 1em;
+}
