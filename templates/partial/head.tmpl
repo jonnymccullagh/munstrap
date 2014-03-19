@@ -65,10 +65,12 @@
                 <TMPL_LOOP NAME="GLOBALCATS">
                   <li>
                     <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLDAY">"><TMPL_VAR NAME="NAME"></a> 
-                    <span class="label"><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLDAY">">d</a></span> 
-                    <span class="label"><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLWEEK">">w</a></span> 
-                    <span class="label"><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLMONTH">">m</a></span> 
-                    <span class="label"><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLYEAR">">y</a></span> 
+					<div style="margin-left: 25px;">
+						<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLDAY">"><span class="badge">d</span></a>
+						<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLWEEK">"><span class="badge">w</span></a>
+						<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLMONTH">"><span class="badge">m</span></a>
+						<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLYEAR">"><span class="badge">y</span></a>
+					</div>
                   </li>
                 </TMPL_LOOP>
               </ul>

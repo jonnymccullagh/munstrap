@@ -21,7 +21,7 @@
         <TMPL_IF NAME="NGROUPS">
   <!-- GROUPS Listing level 2 -->
     <TMPL_LOOP NAME="GROUPS">
-        <li><span class="domain glyphicon glyphicon-folder"><a href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></span>
+        <li><span class="domain"><a href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></span>
         <ul>
       <TMPL_IF NAME="NCATEGORIES"><TMPL_LOOP NAME="CATEGORIES">
                 <li><span class="host"><a href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></span>

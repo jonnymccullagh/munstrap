@@ -1,5 +1,10 @@
+img.i {
+  display: block;
+  margin: 10px auto;
+}
+
 ul, li{
-	list-style-type: none;
+  list-style-type: none;
 }
 
 .logo {
