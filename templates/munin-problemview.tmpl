@@ -1,9 +1,10 @@
 <TMPL_INCLUDE NAME="partial/head.tmpl">
+
 <div id="main">
-  <div class="container" id="content">
+  <div id="content">
     <h2>Problem Overview</h2>
     
-    <div class="alert alert-danger"><h3>Critical</h3></div>
+    <div class="alert alert-danger">Critical</div>
     <TMPL_LOOP NAME="CRITICAL">
       <div class="row">
         <div class="col-md-6">
@@ -33,7 +34,7 @@
       </div>
     </TMPL_LOOP>
     
-    <div class="alert alert-danger"><h3>Warning</h3></div>
+    <div class="alert alert-warning">Warning</div>
     <TMPL_LOOP NAME="WARNING">
       <div class="row">
         <div class="col-md-6">
@@ -63,7 +64,7 @@
       </div>
     </TMPL_LOOP>
     
-    <div class="alert alert-info"><h3>Unknown</h3></div>
+    <div class="alert alert-info">Unknown</div>
     <TMPL_LOOP NAME="UNKNOWN">
       <div class="row">
         <div class="col-md-6">
