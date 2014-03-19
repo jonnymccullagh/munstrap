@@ -1,33 +1,26 @@
-<div id="header">
-
-
-<TMPL_IF NAME="PATH">
-	<ol class="breadcrumb">
-	<TMPL_LOOP NAME="PATH">
-		<li>
-		<TMPL_IF NAME="PATHNAME"> 
-				<TMPL_IF NAME="PATH"><a href="<TMPL_VAR NAME="PATH">"></TMPL_IF>
-					<TMPL_VAR NAME="PATHNAME">
-				<TMPL_IF NAME="PATH"></a></TMPL_IF>
-		<TMPL_ELSE>
-				<a href="<TMPL_VAR NAME="R_PATH">">
-					 Home
-				</a>
-		</TMPL_IF>
-		</li>
-	</TMPL_LOOP>
-	</ol>
-<TMPL_ELSE>
-	<ol class="breadcrumb">
-		<a href="<TMPL_VAR NAME="R_PATH">">
-			Home
-		</a>
-	</ol>
-
-</TMPL_IF>
-
-
-
-
+<div class="container">
+  <TMPL_IF NAME="PATH">
+    <ol class="breadcrumb">
+      <TMPL_LOOP NAME="PATH">
+        <li>
+        <TMPL_IF NAME="PATHNAME"> 
+          <TMPL_IF NAME="PATH"><a href="<TMPL_VAR NAME="PATH">"></TMPL_IF>
+            <TMPL_VAR NAME="PATHNAME">
+          <TMPL_IF NAME="PATH"></a></TMPL_IF>
+        <TMPL_ELSE>
+          <a href="<TMPL_VAR NAME="R_PATH">">
+             Home
+          </a>
+        </TMPL_IF>
+        </li>
+      </TMPL_LOOP>
+    </ol>
+  <TMPL_ELSE>
+    <ol class="breadcrumb">
+      <a href="<TMPL_VAR NAME="R_PATH">">
+        Home
+      </a>
+    </ol>
+  </TMPL_IF>
 </div>
 
