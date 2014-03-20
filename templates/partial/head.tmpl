@@ -23,7 +23,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<TMPL_VAR NAME="R_PATH">">Munin</a>
+          <a class="navbar-brand" href="<TMPL_VAR NAME="R_PATH">"><span class="glyphicon glyphicon-stats"></span> Munin</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,7 +64,7 @@
                 <TMPL_LOOP NAME="GLOBALCATS">
                   <li>
                     <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLDAY">"><TMPL_VAR NAME="NAME"></a> 
-					<div style="margin-left: 25px;">
+					<div style="margin-left: 25px; margin-bottom: 5px;">
 						<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLDAY">"><span class="badge">d</span></a>
 						<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLWEEK">"><span class="badge">w</span></a>
 						<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLMONTH">"><span class="badge">m</span></a>
