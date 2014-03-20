@@ -12,8 +12,6 @@
     <div id="my-tab-content" class="tab-content">
       <TMPL_LOOP NAME="CATEGORIES">
         <div class="tab-pane <TMPL_IF NAME="__FIRST__"> active </TMPL_IF>" id="<TMPL_VAR ESCAPE="HTML" NAME="NAME">">
-          <h3><TMPL_VAR ESCAPE="HTML" NAME="NAME"></h3>
-          
           <TMPL_LOOP NAME="SERVICES">
             <div class="row">
               <div class="col-md-6">
