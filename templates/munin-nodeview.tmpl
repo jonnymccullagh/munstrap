@@ -1,8 +1,6 @@
 <TMPL_INCLUDE NAME="partial/head.tmpl">
-<h2><TMPL_VAR NAME="NAME"></h2>
-<div id="main">
-  <div id="content">
-  
+
+	<h2><TMPL_VAR NAME="NAME"></h2>
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
       <TMPL_LOOP NAME="CATEGORIES">
         <li <TMPL_IF NAME="__FIRST__"> class="active" </TMPL_IF>>
@@ -41,7 +39,5 @@
         </div>
       </TMPL_LOOP>
     </div>
-
-  </div>
-</div>
+	
 <TMPL_INCLUDE NAME="partial/footer.tmpl">

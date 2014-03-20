@@ -1,7 +1,5 @@
 <TMPL_INCLUDE NAME="partial/head.tmpl">
 
-<div id="main">
-  <div id="content">
     <TMPL_LOOP NAME="SERVICES">
       <div class="service">
         <h3 id="<TMPL_VAR ESCAPE="HTML" NAME="name">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></h3>
@@ -46,8 +44,6 @@
           </TMPL_LOOP>
       </div>
     </TMPL_LOOP>
-  </div>
-</div>
 
 <TMPL_INCLUDE NAME="partial/footer.tmpl">
 
