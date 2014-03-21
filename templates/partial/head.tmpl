@@ -10,6 +10,17 @@
     <link rel="icon" type="image/png" href="<TMPL_VAR NAME="R_PATH">/static/favicon.png" />
     <link href="<TMPL_VAR NAME="R_PATH">/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<TMPL_VAR NAME="R_PATH">/static/style-munstrap.css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+      //Bootstrap tab anchor fix
+      var url = document.location.toString();
+      if (url.match('#')) {
+        $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+      }
+      $('.nav-tabs a').on('shown', function (e) {
+        window.location.hash = e.target.hash;
+      })
+    </script>
   </head>
   
   <body>
