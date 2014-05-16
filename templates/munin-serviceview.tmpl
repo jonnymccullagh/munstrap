@@ -16,42 +16,34 @@
       
       <div class="row">
         <div class="col-md-6">
-          <a data-toggle="modal" data-target=".modal" href="<TMPL_VAR NAME="ZOOMDAY">">
-            <img src="<TMPL_VAR NAME="IMGDAY">" 
-             alt="daily graph"
-             class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-             <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
-             <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
-          </a>
+          <img data-href="<TMPL_VAR NAME="ZOOMDAY">" src="<TMPL_VAR NAME="IMGDAY">" 
+           alt="daily graph"
+           class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+           <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
+           <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
         </div>
         <div class="col-md-6">
-          <a data-toggle="modal" data-target=".modal" href="<TMPL_VAR NAME="ZOOMWEEK">">
-            <img data-toggle="modal" data-target=".modal" data-href="<TMPL_VAR NAME="ZOOMWEEK">" src="<TMPL_VAR NAME="IMGWEEK">" 
-             alt="weekly graph" 
-             class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-             <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
-             <TMPL_IF NAME="IMGWEEKHEIGHT">height="<TMPL_VAR NAME="IMGWEEKHEIGHT">"</TMPL_IF>/>
-          </a>
+          <img data-href="<TMPL_VAR NAME="ZOOMWEEK">" src="<TMPL_VAR NAME="IMGWEEK">" 
+           alt="weekly graph" 
+           class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+           <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
+           <TMPL_IF NAME="IMGWEEKHEIGHT">height="<TMPL_VAR NAME="IMGWEEKHEIGHT">"</TMPL_IF>/>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <a data-toggle="modal" data-target=".modal" href="<TMPL_VAR NAME="ZOOMMONTH">">
-            <img data-toggle="modal" data-target=".modal" data-href="<TMPL_VAR NAME="ZOOMMONTH">" src="<TMPL_VAR NAME="IMGMONTH">" 
-             alt="monthly graph" 
-             class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-             <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF> 
-             <TMPL_IF NAME="IMGMONTHHEIGHT">height="<TMPL_VAR NAME="IMGMONTHHEIGHT">"</TMPL_IF>/>
-          </a>
+          <img data-href="<TMPL_VAR NAME="ZOOMMONTH">" src="<TMPL_VAR NAME="IMGMONTH">" 
+           alt="monthly graph" 
+           class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+           <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF> 
+           <TMPL_IF NAME="IMGMONTHHEIGHT">height="<TMPL_VAR NAME="IMGMONTHHEIGHT">"</TMPL_IF>/>
         </div>
         <div class="col-md-6">
-          <a data-toggle="modal" data-target=".modal" href="<TMPL_VAR NAME="ZOOMYEAR">">
-            <img data-toggle="modal" data-target=".modal" data-href="<TMPL_VAR NAME="ZOOMYEAR">" src="<TMPL_VAR NAME="IMGYEAR">" 
-             alt="yearly graph" 
-             class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-             <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF> 
-             <TMPL_IF NAME="IMGYEARHEIGHT">height="<TMPL_VAR NAME="IMGYEARHEIGHT">"</TMPL_IF>/>
-          </a>
+          <img data-href="<TMPL_VAR NAME="ZOOMYEAR">" src="<TMPL_VAR NAME="IMGYEAR">" 
+           alt="yearly graph" 
+           class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+           <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF> 
+           <TMPL_IF NAME="IMGYEARHEIGHT">height="<TMPL_VAR NAME="IMGYEARHEIGHT">"</TMPL_IF>/>
         </div>
       </div>
       
@@ -74,13 +66,107 @@
       </TMPL_IF>
     </TMPL_LOOP>
     
-    <div class="modal fade">
+    <div id="zoom" class="modal fade">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <!-- Dynazoom -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Zoom</h4>
+          </div>
+          <div class="modal-body">
+
+            <div style="position:relative;">
+              <img id="image" />
+            <div id="overlayDiv" />
+
+            </div>
+            <table>
+            <tr>
+            <td>
+
+            </td>
+            <td>
+              Zooming is very easy, it's done in 3 clicks (regular clicks, no drag&amp;drop):
+              <ul>
+                <li> First click to define the start of zoom.
+                <li> Second click to define the ending of zoom.
+                <li> Third click inside the defined zone to zoom, outside to cancel the zone.
+              </ul>
+            </td>
+            </tr>
+            </table>
+
+            <form name="myNewForm" id="myNewForm">
+            <table>
+              <!-- Plugin Name : "domain/hostname" -->
+              <tr>
+                <td>Plugin Name <em>(domain/hostname/plugin_name)</em> :</td>
+                <td><input type="text" name="plugin_name" size="64" ></td>
+              </tr>
+
+              <!-- Start and stop -->
+              <tr>
+                <td>Start/Stop of the graph <br/>(format:2005-08-15T15:52:01+0000) <br /><em>(epoch)</em> :</td>
+                <td>
+                  <input type="text" name="start_iso8601" size='24'> / <input type="text" name="stop_iso8601" size="24"> <input name="btnMaj" type=button value="update" /> <br />
+
+                  (<input type="text" name="start_epoch" size="10"> / <input type="text" name="stop_epoch" size="10">)
+                </td>
+              </tr>
+
+              <!-- Limit high & low -->
+              <tr>
+                <td>Limit low/high :</td>
+                <td>
+
+                  <input type="text" name="lower_limit" size="10"> /  <input type="text" name="upper_limit" size="10">
+                </td>
+              </tr>
+
+
+              <!-- Image size -->
+              <tr>
+                <td>Graph size (w/o legend) <em>(pixels)</em>:</td>
+
+                <td>
+                  <input type="text" name="size_x" size="5"> / <input type="text" name="size_y" size="5" >
+                </td>
+              </tr>
+            </table>
+              <input type=hidden name="cgiurl_graph" />
+              <input type=submit />
+              <input type=button name="btnZoomOut" value="Zoom Out x2" />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
+    
+    <script src="<TMPL_VAR NAME="R_PATH">/static/js/formatdate.js"></script>
+    <script src="<TMPL_VAR NAME="R_PATH">/static/js/querystring.js"></script>
+    <script src="<TMPL_VAR NAME="R_PATH">/static/js/dynazoom.js"></script>
+    <script type="text/javascript">
+      $('.img-zoom').click(function(){
+        var form = document.getElementById("myNewForm");
+        var image = document.getElementById("image");
+        var divOverlay = document.getElementById("overlayDiv");
+        refreshZoom($(this).attr('data-href'), form, image, divOverlay);
+        $('#zoom').modal('show');
+      });
+    </script>
+    
+    <style>
+    #overlayDiv { 
+      opacity: .55; 
+      filter: alpha(opacity=55); 
+      background-color:#EEE; 
+      position: absolute; 
+      z-index: 2;
+    }
+    </style>
 
 <TMPL_INCLUDE NAME="partial/footer.tmpl">
   
