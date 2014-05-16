@@ -74,72 +74,89 @@
             <h4 class="modal-title">Zoom</h4>
           </div>
           <div class="modal-body">
-
-            <div style="position:relative;">
-              <img id="image" />
-            <div id="overlayDiv" />
-
+          
+            <div class="row">
+              <div class="col-md-12">
+                <img id="zoom_image" class="img-responsive"/>
+                <div id="zoom_overlay" style="
+                  opacity: .55; 
+                  filter: alpha(opacity=55); 
+                  background-color:#EEE; 
+                  position: absolute; 
+                  z-index: 100;">
+                </div>
+              </div>
             </div>
-            <table>
-            <tr>
-            <td>
-
-            </td>
-            <td>
-              Zooming is very easy, it's done in 3 clicks (regular clicks, no drag&amp;drop):
-              <ul>
-                <li> First click to define the start of zoom.
-                <li> Second click to define the ending of zoom.
-                <li> Third click inside the defined zone to zoom, outside to cancel the zone.
-              </ul>
-            </td>
-            </tr>
-            </table>
-
-            <form name="myNewForm" id="myNewForm">
-            <table>
-              <!-- Plugin Name : "domain/hostname" -->
-              <tr>
-                <td>Plugin Name <em>(domain/hostname/plugin_name)</em> :</td>
-                <td><input type="text" name="plugin_name" size="64" ></td>
-              </tr>
-
-              <!-- Start and stop -->
-              <tr>
-                <td>Start/Stop of the graph <br/>(format:2005-08-15T15:52:01+0000) <br /><em>(epoch)</em> :</td>
-                <td>
-                  <input type="text" name="start_iso8601" size='24'> / <input type="text" name="stop_iso8601" size="24"> <input name="btnMaj" type=button value="update" /> <br />
-
-                  (<input type="text" name="start_epoch" size="10"> / <input type="text" name="stop_epoch" size="10">)
-                </td>
-              </tr>
-
-              <!-- Limit high & low -->
-              <tr>
-                <td>Limit low/high :</td>
-                <td>
-
-                  <input type="text" name="lower_limit" size="10"> /  <input type="text" name="upper_limit" size="10">
-                </td>
-              </tr>
-
-
-              <!-- Image size -->
-              <tr>
-                <td>Graph size (w/o legend) <em>(pixels)</em>:</td>
-
-                <td>
-                  <input type="text" name="size_x" size="5"> / <input type="text" name="size_y" size="5" >
-                </td>
-              </tr>
-            </table>
-              <input type=hidden name="cgiurl_graph" />
-              <input type=submit />
-              <input type=button name="btnZoomOut" value="Zoom Out x2" />
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            
+            <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-info service-alert">
+                    <p>Zooming is very easy, it's done in 3 clicks (regular clicks, no drag&amp;drop):</p>
+                    <ol>
+                      <li>Click to define the start of zoom.</li>
+                      <li>Click to define the ending of zoom.</li>
+                      <li>Click inside the defined zone to zoom, outside to cancel the zone.</li>
+                    </ol>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-12">
+                <form class="form-horizontal" role="form" name="zoom_form" id="zoom_form">
+                  <div class="form-group">
+                    <label for="plugin_name" class="col-sm-2 control-label">Plugin Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="plugin_name" id="plugin_name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="start_iso8601" class="col-sm-2 control-label">Time Start/Stop</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="start_iso8601" id="start_iso8601">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="stop_iso8601" id="stop_iso8601">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="start_epoch" class="col-sm-2 control-label">Epoch Start/Stop</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="start_epoch" id="start_epoch">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="stop_epoch" id="stop_epoch">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lower_limit" class="col-sm-2 control-label">Limit Low/High</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="lower_limit" id="lower_limit">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="upper_limit" id="upper_limit">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="size_x" class="col-sm-2 control-label">Width/Height</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="size_x" id="size_x">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="size_y" id="size_y">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <input type=hidden name="cgiurl_graph"/>
+                      <button type="submit" class="btn btn-success">Refresh</button>
+                      <button type="button" class="btn btn-default" name="btnZoomOut">Zoom Out (x2)</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -149,24 +166,34 @@
     <script src="<TMPL_VAR NAME="R_PATH">/static/js/querystring.js"></script>
     <script src="<TMPL_VAR NAME="R_PATH">/static/js/dynazoom.js"></script>
     <script type="text/javascript">
+      //Zoom modal opening
       $('.img-zoom').click(function(){
-        var form = document.getElementById("myNewForm");
-        var image = document.getElementById("image");
-        var divOverlay = document.getElementById("overlayDiv");
-        refreshZoom($(this).attr('data-href'), form, image, divOverlay);
+        var query = $(this).attr('data-href');
+        var form = document.getElementById("zoom_form");
+        var image = document.getElementById("zoom_image");
+        var divOverlay = document.getElementById("zoom_overlay");
+        
+        form.onsubmit = function(){//Submit catching
+          var qs = new Querystring(query);
+          var src = "cgiurl_graph=" + qs.get("cgiurl_graph", "/munin-cgi/munin-cgi-graph")
+            + "&plugin_name=" + form.plugin_name.value
+            + "&start_epoch=" + form.start_epoch.value
+            + "&stop_epoch=" + form.stop_epoch.value
+            + "&lower_limit=" + form.lower_limit.value
+            + "&upper_limit=" + form.upper_limit.value
+            + "&size_x=" + form.size_x.value
+            + "&size_y=" + form.size_y.value
+          ;
+          alert(src);
+          refreshZoom(src, form, image, divOverlay);
+          return false;
+        };
+        
+        refreshZoom(query, form, image, divOverlay);
         $('#zoom').modal('show');
       });
+      
     </script>
-    
-    <style>
-    #overlayDiv { 
-      opacity: .55; 
-      filter: alpha(opacity=55); 
-      background-color:#EEE; 
-      position: absolute; 
-      z-index: 2;
-    }
-    </style>
 
 <TMPL_INCLUDE NAME="partial/footer.tmpl">
   

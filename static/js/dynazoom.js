@@ -9,7 +9,7 @@ function refreshZoom(query, form, image, divOverlay) {
   form.size_x.value = qs.get("size_x", "");
   form.size_y.value = qs.get("size_y", "");
 
-  form.btnMaj.onclick = majDates;
+  //form.btnMaj.onclick = majDates;
   form.btnZoomOut.onclick = zoomOut;
 
   // Refresh the image with the selected params
