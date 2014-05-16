@@ -4,6 +4,7 @@ body{
 
 img.i {
   display: block;
+  cursor: pointer;
   margin: 10px auto;
 }
 
