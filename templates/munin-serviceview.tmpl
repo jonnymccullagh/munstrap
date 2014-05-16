@@ -2,18 +2,18 @@
 
     <div class="clearfix"></div>
 
-    <!-- Alerts -->
-    <TMPL_IF NAME="STATE_UNKNOWN">
-      <div class="alert alert-info"><strong>Note:</strong> This service is in UNKNOWN state, because something bad happened.  Please check your network, the munin-node, and the plugin.</div>
-    </TMPL_IF>
-    <TMPL_IF NAME="STATE_CRITICAL">
-      <div class="alert alert-danger"><strong>Note:</strong> This service is in CRITICAL state because one of the values reported is outside the allowed range. Please see further down for information about the ranges and the graph for the values.</div>
-    </TMPL_IF>
-    <TMPL_IF NAME="STATE_WARNING">
-      <div class="alert alert-warning"><strong>Note:</strong> This service is in WARNING state because one of the values reported is outside the allowed range.  Please see further down for information about the ranges and the graph for the values.</div>
-    </TMPL_IF>
-    
     <TMPL_LOOP NAME="SERVICES">
+      <!-- Alerts -->
+      <TMPL_IF NAME="STATE_UNKNOWN">
+          <div class="alert service-alert alert-info"><strong>Note:</strong> This service is in UNKNOWN state, because something bad happened.  Please check your network, the munin-node, and the plugin.</div>
+      </TMPL_IF>
+      <TMPL_IF NAME="STATE_CRITICAL">
+        <div class="alert service-alert alert-danger"><strong>Note:</strong> This service is in CRITICAL state because one of the values reported is outside the allowed range. Please see further down for information about the ranges and the graph for the values.</div>
+      </TMPL_IF>
+      <TMPL_IF NAME="STATE_WARNING">
+        <div class="alert service-alert alert-warning"><strong>Note:</strong> This service is in WARNING state because one of the values reported is outside the allowed range.  Please see further down for information about the ranges and the graph for the values.</div>
+      </TMPL_IF>
+      
       <div class="row">
         <div class="col-md-6">
           <img src="<TMPL_VAR NAME="IMGDAY">" 

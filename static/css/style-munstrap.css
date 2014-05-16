@@ -6,3 +6,7 @@ img.i {
   display: block;
   margin: 10px auto;
 }
+
+div.service-alert{
+  margin-top: 10px;
+}
