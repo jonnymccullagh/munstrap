@@ -26,6 +26,7 @@
 <table>
 	<TMPL_LOOP NAME="SERVICES">
 		<tr><td>
+		<a href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a><br>
 		<a href="<TMPL_VAR NAME="URLX">">
 		<img class="i<TMPL_IF NAME="STATE_WARNING">warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">crit</TMPL_IF>"
 		 src="<TMPL_VAR NAME="IMGDAY">"
@@ -33,7 +34,8 @@
          <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
 		 <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
 		</a></td>
-        <td><a href="<TMPL_VAR NAME="URLX">">
+        <td><a href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a><br>
+	    <a href="<TMPL_VAR NAME="URLX">">
 		<img class="i<TMPL_IF NAME="STATE_WARNING">warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">crit</TMPL_IF>"
 		 src="<TMPL_VAR NAME="IMGWEEK">" 
 		 alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
