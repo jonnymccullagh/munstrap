@@ -11,7 +11,13 @@
       //Bootstrap tab anchor fix
       var url = document.location.toString();
       if (url.match('#')) {
-        $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+        var taget = url.split('#')[1];
+        $('.nav-tabs a[href=#' + taget + ']').tab('show');
+        $('.tab-pane.active').removeClass('active');
+        $('.tab-pane.in').removeClass('in');
+        $('#' + taget).addClass('active');
+        $('#' + taget).addClass('in');
+        $('#' + taget).addClass('fade');
       }
       $('.nav-tabs a').on('shown', function (e) {
         window.location.hash = e.target.hash;
