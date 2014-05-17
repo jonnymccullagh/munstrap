@@ -1,0 +1,20 @@
+body{
+  padding-top: 70px;
+}
+
+img.i {
+  display: block;
+  margin: 10px auto;
+}
+
+img.img-zoom{
+  cursor: pointer;
+}
+
+div.service-alert{
+  margin-top: 10px;
+}
+
+img#zoom_image{
+  margin-bottom: 15px;
+}
