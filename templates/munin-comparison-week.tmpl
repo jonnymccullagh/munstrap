@@ -4,9 +4,9 @@
     <TMPL_LOOP NAME="CATEGORIES">
       <h3 id="<TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME">"><TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME"></h3>
       <TMPL_LOOP NAME="SERVICES">
-        <TMPL_LOOP NAME="NODES">
-          <div class="row">
-            <div class="col-md-12">
+        <div class="row">
+          <TMPL_LOOP NAME="NODES">
+            <div class="col-md-6">
               <a href="<TMPL_VAR ESCAPE="URL" NAME="NODENAME">/index.html"><TMPL_VAR ESCAPE="HTML" NAME="NODENAME"></a>
                 <span class="glyphicon glyphicon-chevron-right"></span>
                   <TMPL_IF NAME="URL1"><a <TMPL_IF NAME="STATE_WARNING">class="warn"</TMPL_IF>
@@ -24,8 +24,8 @@
                 </a>
               </TMPL_IF>
             </div>
-          </div>
-        </TMPL_LOOP>
+          </TMPL_LOOP>
+        </div>
       </TMPL_LOOP>
     </TMPL_LOOP>
 
