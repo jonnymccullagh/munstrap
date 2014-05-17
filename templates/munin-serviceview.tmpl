@@ -69,35 +69,11 @@
     <div id="zoom" class="modal fade">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Zoom</h4>
-          </div>
           <div class="modal-body">
           
             <div class="row">
               <div class="col-md-12">
                 <img id="zoom_image" class="img-responsive"/>
-                <div id="zoom_overlay" style="
-                  opacity: .55; 
-                  filter: alpha(opacity=55); 
-                  background-color:#EEE; 
-                  position: absolute; 
-                  z-index: 100;">
-                </div>
-              </div>
-            </div>
-            
-            <div class="row">
-              <div class="col-md-12">
-                <div class="alert alert-info service-alert">
-                    <p>Zooming is very easy, it's done in 3 clicks (regular clicks, no drag&amp;drop):</p>
-                    <ol>
-                      <li>Click to define the start of zoom.</li>
-                      <li>Click to define the ending of zoom.</li>
-                      <li>Click inside the defined zone to zoom, outside to cancel the zone.</li>
-                    </ol>
-                </div>
               </div>
             </div>
             
@@ -140,21 +116,41 @@
                   <div class="form-group">
                     <label for="size_x" class="col-sm-2 control-label">Width/Height</label>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" name="size_x" id="size_x">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="size_x" id="size_x">
+                        <span class="input-group-addon">px</span>
+                      </div>
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" name="size_y" id="size_y">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="size_y" id="size_y">
+                        <span class="input-group-addon">px</span>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <input type=hidden name="cgiurl_graph"/>
                       <button type="submit" class="btn btn-success">Refresh</button>
-                      <button type="button" class="btn btn-default" name="btnZoomOut">Zoom Out (x2)</button>
+                      <button type="button" class="btn btn-default" name="btnReset">Reset</button>
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </form>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-info">
+                    <p>Zooming is very easy, it's done in 3 clicks (regular clicks, no drag&amp;drop):</p>
+                    <ol>
+                      <li>Click to define the start of zoom.</li>
+                      <li>Click to define the ending of zoom.</li>
+                      <li>Refresh.</li>
+                    </ol>
+                    <p>You can use the interactive form too.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -171,7 +167,6 @@
         var query = $(this).attr('data-href');
         var form = document.getElementById("zoom_form");
         var image = document.getElementById("zoom_image");
-        var divOverlay = document.getElementById("zoom_overlay");
         
         form.onsubmit = function(){//Submit catching
           var qs = new Querystring(query);
@@ -179,16 +174,18 @@
             + "&plugin_name=" + form.plugin_name.value
             + "&start_epoch=" + form.start_epoch.value
             + "&stop_epoch=" + form.stop_epoch.value
+            + "&rst_start_epoch=" + qs.get("start_epoch", "")
+            + "&rst_stop_epoch=" + qs.get("stop_epoch", "")
             + "&lower_limit=" + form.lower_limit.value
             + "&upper_limit=" + form.upper_limit.value
             + "&size_x=" + form.size_x.value
             + "&size_y=" + form.size_y.value
           ;
-          refreshZoom(src, form, image, divOverlay);
+          refreshZoom(src, form, image);
           return false;
         };
         
-        refreshZoom(query, form, image, divOverlay);
+        refreshZoom(query, form, image);
         $('#zoom').modal('show');
       });
       
