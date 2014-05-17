@@ -1,52 +1,12 @@
-<TMPL_LOOP NAME="PATH">
-  <TMPL_UNLESS NAME="__last__">
-    <TMPL_IF NAME="pathname"> <span class="glyphicon glyphicon-chevron-right"></span>
-    <TMPL_IF NAME="path"><a href="<TMPL_VAR NAME="path">"></TMPL_IF>
-    <TMPL_VAR NAME="pathname">
-	     <TMPL_IF NAME="path"></a></TMPL_IF>
-         <TMPL_ELSE>
-           <TMPL_IF NAME="path"><a href="<TMPL_VAR NAME="path">"></TMPL_IF>
-           Overview
-           <TMPL_IF NAME="path"></a></TMPL_IF>
-         </TMPL_IF>
-       </TMPL_UNLESS>
-     </TMPL_LOOP>
-     <TMPL_IF NAME="CATEGORY">
-     <span class="glyphicon glyphicon-chevron-right"></span> <TMPL_VAR NAME="CATEGORY">
-     </TMPL_IF>
-     <TMPL_IF NAME="LARGESET"> 
-
-
-
-
-
-<!-- Single button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <TMPL_VAR NAME="INFO_OPTION"> <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-  <TMPL_LOOP NAME="PEERS">
-    <li><TMPL_IF NAME="LINK">
-            <a href="<TMPL_VAR NAME="LINK">"> 
-          <TMPL_ELSE>
-            <a href="">
-          </TMPL_IF>
-        <TMPL_VAR NAME="NAME"></a></li>
-  </TMPL_LOOP>
-  </ul>
-</div>
-
-
-
-
-
-
-
-
-
-
-      <TMPL_ELSE>
-        :<TMPL_LOOP NAME="PEERS">: <TMPL_IF NAME="LINK"><a href="<TMPL_VAR NAME="LINK">"></TMPL_IF><TMPL_VAR NAME="NAME"><TMPL_IF NAME="LINK"></a></TMPL_IF> </TMPL_LOOP>
-  </TMPL_IF>
-             
+<TMPL_IF NAME="LARGESET">
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <TMPL_VAR NAME="INFO_OPTION"> <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <TMPL_LOOP NAME="PEERS">
+        <li><TMPL_IF NAME="LINK"><a href="<TMPL_VAR NAME="LINK">"><TMPL_ELSE><a href=""></TMPL_IF><TMPL_VAR NAME="NAME"></a></li>
+      </TMPL_LOOP>
+    </ul>
+  </div>
+</TMPL_IF>
