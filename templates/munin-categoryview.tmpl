@@ -2,7 +2,9 @@
 
     <TMPL_LOOP NAME="SERVICES">
       <div class="service row">
-        <h3 id="<TMPL_VAR ESCAPE="HTML" NAME="name">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></h3>
+        <div class="node col-md-12">
+          <h3 id="<TMPL_VAR ESCAPE="HTML" NAME="name">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></h3>
+        </div>
           <TMPL_LOOP NAME="GRAPHS">
             <div class="node col-md-6">
               <a href="<TMPL_VAR NAME="HOST_URL">"><TMPL_VAR ESCAPE="HTML" NAME="NODENAME"></a>
