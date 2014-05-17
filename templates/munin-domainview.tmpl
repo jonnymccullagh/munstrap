@@ -11,7 +11,7 @@
                   <a href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
                   <ul>
                     <TMPL_LOOP NAME="SERVICES">
-                      <li><a <TMPL_IF NAME="STATE_WARNING">class="warn"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="crit"</TMPL_IF> href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></li>
+                      <li><a <TMPL_IF NAME="STATE_WARNING">class="text-warning"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="text-critical"</TMPL_IF> href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></li>
                     </TMPL_LOOP>
                   </ul>
                 </li>
@@ -28,7 +28,7 @@
                           <a href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
                           <ul>
                             <TMPL_LOOP NAME="SERVICES">
-                              <li><a <TMPL_IF NAME="STATE_WARNING">class="warn"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="crit"</TMPL_IF> href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></li>
+                              <li><a <TMPL_IF NAME="STATE_WARNING">class="text-warning"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="text-critical"</TMPL_IF> href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></li>
                             </TMPL_LOOP> 
                           </ul>
                         </li>
@@ -45,7 +45,7 @@
                                     <a href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
                                     <ul>
                                       <TMPL_LOOP NAME="SERVICES">
-                                        <li><a <TMPL_IF NAME="STATE_WARNING">class="warn"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="crit"</TMPL_IF> href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></li>
+                                        <li><a <TMPL_IF NAME="STATE_WARNING">class="text-warning"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="text-critical"</TMPL_IF> href="<TMPL_VAR NAME="URLX">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a></li>
                                       </TMPL_LOOP><!-- END SERVICES -->
                                     </ul>
                                   </li>
