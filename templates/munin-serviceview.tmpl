@@ -64,6 +64,44 @@
           </div>
         </div>
       </TMPL_IF>
+      
+      <h2><small>Graph information</small></h2>
+      
+      <TMPL_LOOP NAME="GRAPHINFO">
+        <p class="text-muted"><TMPL_VAR NAME="INFO"></p>
+      </TMPL_LOOP>
+      
+      <table class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th class="col-md-2">Field</th>
+            <th class="col-md-2">Internal name</th>
+            <th class="col-md-1">Type</th>
+            <th class="col-md-1">Warning</th>
+            <th class="col-md-1">Critical</th>
+            <th class="col-md-5">Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <TMPL_LOOP NAME="FIELDINFO">
+             <tr<TMPL_IF NAME="STATE_CRITICAL"> class="danger"<TMPL_ELSE><TMPL_IF NAME="STATE_WARNING"> class="warning"</TMPL_IF></TMPL_IF>>
+               <td><TMPL_VAR ESCAPE="HTML" NAME="LABEL"></td>
+               <td><TMPL_VAR ESCAPE="HTML" NAME="FIELD"></td>
+               <td><TMPL_VAR NAME="TYPE"></td>
+               <td class="text-warning"><TMPL_VAR NAME="WARN"></td>
+               <td class="text-danger"><TMPL_VAR NAME="CRIT"></td>
+               <td class="text-muted"><TMPL_VAR ESCAPE="HTML" NAME="INFO"></td>
+             </tr>
+             <TMPL_IF NAME="EXTINFO">
+               <tr>
+                 <td class='wrap' colspan="6" align='left' valign='top'>
+                  This field has the following extra information: <TMPL_VAR ESCAPE="HTML" NAME="EXTINFO">
+                 </td>
+               </tr>
+             </TMPL_IF>
+          </TMPL_LOOP>
+        </tbody>
+      </table>
     </TMPL_LOOP>
     
     <div id="zoom" class="modal fade">
@@ -190,6 +228,5 @@
       });
       
     </script>
-
 <TMPL_INCLUDE NAME="partial/footer.tmpl">
   
