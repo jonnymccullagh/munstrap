@@ -10,7 +10,7 @@ Installation
 ```
 cd /etc/munin
 
-git clone https://github.com/Rauks/munstrap.git
+git clone https://github.com/jonnymccullagh/munstrap.git
 mv -b munstrap/templates .
 mv -b munstrap/static .
 rm -rf munstrap
@@ -30,7 +30,7 @@ Revert to stock
 ---------------
 ```
 cd /etc/munin
-rm templates static
-mv templates.dist templates
-mv static static.dist
+rm -rf templates static
+mv templates~ templates
+mv static~ static
 ```
