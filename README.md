@@ -8,39 +8,39 @@ Alternative Munin 2.x templates based on Twitter Bootstrap 3
 Installation
 ------------
 
-1. Get Munstrap:
+Get Munstrap:
 
 ```
 cd /etc/munin
 git clone https://github.com/jonnymccullagh/munstrap.git
 ```
 
-2. Replace the Munin stock template by Munstrap (don't worry, there is a backup of the old files):
+Replace the Munin stock template by Munstrap (don't worry, there is a backup of the old files):
 
 ```
 cp -rb munstrap/templates .
 cp -rb munstrap/static .
 ```
 
-3. Clean the old generated files:
+Clean the old generated files:
 
 ```
 rm -rf /var/www/munin/*
 ```
 
-4. Take a coffee and wait some minutes for the html generation by Munin.
+Take a coffee and wait some minutes for the html generation by Munin.
 
 Upgrades
 --------
 
-1. Get the last changes from Munstrap:
+Get the last changes from Munstrap:
 
 ```
 cd /etc/munin/munstrap
 git pull
 ```
 
-2. Replace the old version by the new one:
+Replace the old version by the new one:
 
 ```
 cd /etc/munin
