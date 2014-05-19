@@ -2,7 +2,7 @@
 
     <h2>Problem Overview</h2>
     
-    <div class="alert alert-danger">Critical</div>
+    <div class="alert alert-danger" id="critical">Critical</div>
     <TMPL_LOOP NAME="CRITICAL">
       <div class="row">
         <div class="col-md-6">
@@ -32,7 +32,7 @@
       </div>
     </TMPL_LOOP>
     
-    <div class="alert alert-warning">Warning</div>
+    <div class="alert alert-warning" id="warnings">Warning</div>
     <TMPL_LOOP NAME="WARNING">
       <div class="row">
         <div class="col-md-6">
@@ -62,7 +62,7 @@
       </div>
     </TMPL_LOOP>
     
-    <div class="alert alert-info">Unknown</div>
+    <div class="alert alert-info" id="unknowns">Unknown</div>
     <TMPL_LOOP NAME="UNKNOWN">
       <div class="row">
         <div class="col-md-6">

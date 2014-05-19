@@ -3,7 +3,7 @@
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
       <TMPL_LOOP NAME="CATEGORIES">
         <li <TMPL_IF NAME="__FIRST__"> class="active" </TMPL_IF>>
-          <a href="#<TMPL_VAR ESCAPE="HTML" NAME="NAME">" data-toggle="tab"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
+	  <a href="#<TMPL_VAR ESCAPE="HTML" NAME="NAME">" data-toggle="tab"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
         </li>
       </TMPL_LOOP>
     </ul>
