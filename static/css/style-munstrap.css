@@ -1,3 +1,7 @@
+@media (min-width:992px){
+  .modal-lg {width:940px !important;}
+}
+
 body{
   padding-top: 70px;
 }
