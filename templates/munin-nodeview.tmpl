@@ -1,5 +1,14 @@
 <TMPL_INCLUDE NAME="partial/head.tmpl">
 
+    <div id="category-period" class="btn-group pull-right">
+      <select class="form-control">
+        <option value="day">Day</option>
+        <!-- option value="week">Week</option>
+        <option value="month">Month</option -->
+        <option value="year" selected="selected">Year</option>
+      </select>
+    </div>
+
     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
       <TMPL_LOOP NAME="CATEGORIES">
         <li <TMPL_IF NAME="__FIRST__"> class="active" </TMPL_IF>>
@@ -12,10 +21,11 @@
       <TMPL_LOOP NAME="CATEGORIES">
         <div class="tab-pane fade <TMPL_IF NAME="__FIRST__">in active</TMPL_IF>" id="<TMPL_VAR ESCAPE="HTML" NAME="NAME">">
           <TMPL_LOOP NAME="SERVICES">
+          <!--
             <div class="row">
               <div class="col-md-6">
                 <a href="<TMPL_VAR NAME="URLX">">
-                  <img class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+                  <img data-href="<TMPL_VAR NAME="ZOOMWEEK">" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
                    src="<TMPL_VAR NAME="IMGDAY">"
                    alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
                        <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
@@ -24,7 +34,7 @@
               </div>
               <div class="col-md-6">
                 <a href="<TMPL_VAR NAME="URLX">">
-                  <img class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+                  <img class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
                    src="<TMPL_VAR NAME="IMGWEEK">" 
                    alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
                    <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
@@ -32,9 +42,66 @@
                 </a>
               </div>
             </div>
+          -->
+            <img data-href="<TMPL_VAR NAME="ZOOMDAY">" period="day" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+             src="<TMPL_VAR NAME="IMGDAY">"
+             alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+                 <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
+             <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
+                       
+            <img data-href="<TMPL_VAR NAME="ZOOMYEAR">" period="year" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+             src="<TMPL_VAR NAME="IMGYEAR">"
+             alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+                 <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF> 
+             <TMPL_IF NAME="IMGYEARHEIGHT">height="<TMPL_VAR NAME="IMGYEARHEIGHT">"</TMPL_IF>/>
+                           
           </TMPL_LOOP>
         </div>
       </TMPL_LOOP>
     </div>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+
+
+  $('#category-period').change(function(){
+    var period = $('#category-period option:selected').val();
+    $.each([ "day", "week", "month", "year" ], function( index, value ) {
+      if(value==period) {
+        $("div[period='" + value + "']" ).show();
+      } else {
+        $("div[period='" + value + "']" ).hide();
+      }
+    });
+  });
+
+
+  $('div.tab-pane').each(function(parent_index){
+      var parent = $(this);
+      $.each([ "day", "week", "month", "year" ], function( index, value ) {
+           var numImg = 0;      
+           var divRow = $("<div>").addClass("row").attr("style","display:none;").attr("period",value);
+           $(parent).children('img[period="' + value + '"]').each(function(){
+               divImg = $("<div>").addClass("col-md-6").append(this);
+               divRow.append(divImg);
+               if(numImg%2 == 1) {
+                   parent.append(divRow);
+                   divImg = false;
+                   divRow =$("<div>").addClass("row").attr("style","display:none;").attr("period",value);
+               }        
+               numImg++;
+           });
+           if(divImg) {
+              parent.append(divRow);
+           } 
+      }); 
+       
+      $("div[period='year']" ).show();
+  });
+
+});
+</script>
+    
+<TMPL_INCLUDE NAME="partial/zoom.tmpl"> 
 	
 <TMPL_INCLUDE NAME="partial/footer.tmpl">
