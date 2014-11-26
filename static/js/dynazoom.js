@@ -123,6 +123,34 @@ function refreshZoom(query, form, image, divOverlay) {
     form.stop_iso8601.disabled = false;
     form.start_epoch.disabled = false;
     form.stop_epoch.disabled = false;
+    endZoomThenSubmit(event);
+  }
+  
+  // Submit catching
+  function endZoomThenSubmit(event) {
+      
+      //var query = $(this).attr('data-href');
+      // var form = document.getElementById("zoom_form");
+      // var image = document.getElementById("zoom_image");      
+      
+      
+      //var qs = new Querystring(query);
+      var src = "cgiurl_graph=" + qs.get("cgiurl_graph", "/munin-cgi/munin-cgi-graph")
+        + "&plugin_name=" + form.plugin_name.value
+        + "&start_epoch=" + form.start_epoch.value
+        + "&stop_epoch=" + form.stop_epoch.value
+        + "&rst_start_epoch=" + qs.get("start_epoch", "")
+        + "&rst_stop_epoch=" + qs.get("stop_epoch", "")
+        + "&lower_limit=" + form.lower_limit.value
+        + "&upper_limit=" + form.upper_limit.value
+        + "&size_x=" + form.size_x.value
+        + "&size_y=" + form.size_y.value
+      ;
+      
+      refreshImg();
+      
+      //refreshZoom(src, form, image);
+      //return false;
   }
 
   function fillDate(date, default_date) {
