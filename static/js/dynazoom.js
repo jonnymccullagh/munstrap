@@ -1,31 +1,49 @@
-function refreshZoom(query, form, image, divOverlay) {
-  //INIT
-  var qs = new Querystring(query);
-  init();
-  
-  var scale = refreshImg();
-  var start_epoch = (+qs.get("rst_start_epoch", form.start_epoch.value));
-  var stop_epoch = (+qs.get("rst_stop_epoch", form.stop_epoch.value));
-  var initial_left;
-  var initial_top;
+function popupGraph(img) {
 
-  //form.btnMaj.onclick = majDates;
-  form.plugin_name.onblur = refreshImg;
-  form.start_iso8601.onblur = majDates;
-  form.stop_iso8601.onblur = majDates;
-  form.start_epoch.onblur = refreshImg;
-  form.stop_epoch.onblur = refreshImg;
-  form.lower_limit.onblur = refreshImg;
-  form.upper_limit.onblur = refreshImg;
-  form.size_x.onblur = refreshImg;
-  form.size_y.onblur = refreshImg;
-  form.btnReset.onclick = reset;
-  
-  // Sets the onClick handler
-  image.onclick = click;
-  var clickCounter = 0;
+    var query = img.attr('data-href');
+    var qs = new Querystring(query);
+    
+    var form = document.getElementById("zoom_form");
+    var image = document.getElementById("zoom_image");
+    
+    var start_epoch = (+qs.get("rst_start_epoch", form.start_epoch.value));
+    var stop_epoch = (+qs.get("rst_stop_epoch", form.stop_epoch.value));
+
+    var scale; 
+    
+    var initial_left;
+    var initial_top;
+    
+    var clickCounter = 0; 
+    
+    // Sets the onBlur handler
+    form.plugin_name.onblur = refreshImg;
+    form.start_iso8601.onblur = majDates;
+    form.stop_iso8601.onblur = majDates;
+    form.start_epoch.onblur = refreshImg;
+    form.stop_epoch.onblur = refreshImg;
+    form.lower_limit.onblur = refreshImg;
+    form.upper_limit.onblur = refreshImg;
+    form.size_x.onblur = refreshImg;
+    form.size_y.onblur = refreshImg;
+    form.btnReset.onclick = reset;
+
+    // Sets the onClick handler
+    image.onclick = click;
+      
+    refreshZoom(query, form, image);
+    
+    var reset_start_epoch = form.start_epoch.value;
+    var reset_stop_epoch = form.stop_epoch.value; 
+    
+    $('#zoom').modal('show');
+
+    
 
   //FUNCTIONS
+
+
+
   function init(){
     form.plugin_name.value = qs.get("plugin_name", "localdomain/localhost.localdomain/if_eth0");
     form.start_epoch.value = qs.get("start_epoch", "1236561663");
@@ -34,16 +52,33 @@ function refreshZoom(query, form, image, divOverlay) {
     form.upper_limit.value = qs.get("upper_limit", "");
     form.size_x.value = qs.get("size_x", "");
     form.size_y.value = qs.get("size_y", "");
-
+    
     updateStartStop();
+  }
+  
+
+  function refreshZoom(query, form, image) {
+      qs = new Querystring(query);
+      
+      init();
+
+      start_epoch = +form.start_epoch.value;
+      stop_epoch = +form.stop_epoch.value;
+      scale = refreshImg();
+
+      clickCounter = 0;  
   }
   
   function reset(event){
     init();
     
     //Can be not the initial ones in case of manual refresh
-    form.start_epoch.value = start_epoch;
-    form.stop_epoch.value = stop_epoch;
+    form.start_epoch.value = reset_start_epoch;
+    form.stop_epoch.value = reset_stop_epoch;
+    
+    start_epoch = (+qs.get("rst_start_epoch", form.start_epoch.value));
+    stop_epoch  = (+qs.get("rst_stop_epoch", form.stop_epoch.value));
+    
     updateStartStop();
     
     //Redraw
@@ -128,29 +163,19 @@ function refreshZoom(query, form, image, divOverlay) {
   
   // Submit catching
   function endZoomThenSubmit(event) {
-      
-      //var query = $(this).attr('data-href');
-      // var form = document.getElementById("zoom_form");
-      // var image = document.getElementById("zoom_image");      
-      
-      
-      //var qs = new Querystring(query);
+      var qs = new Querystring(query);
       var src = "cgiurl_graph=" + qs.get("cgiurl_graph", "/munin-cgi/munin-cgi-graph")
         + "&plugin_name=" + form.plugin_name.value
         + "&start_epoch=" + form.start_epoch.value
         + "&stop_epoch=" + form.stop_epoch.value
-        + "&rst_start_epoch=" + qs.get("start_epoch", "")
-        + "&rst_stop_epoch=" + qs.get("stop_epoch", "")
+        + "&rst_start_epoch=" + qs.get("start_epoch", form.start_epoch.value)
+        + "&rst_stop_epoch=" + qs.get("stop_epoch", form.stop_epoch.value)
         + "&lower_limit=" + form.lower_limit.value
         + "&upper_limit=" + form.upper_limit.value
         + "&size_x=" + form.size_x.value
         + "&size_y=" + form.size_y.value
       ;
-      
-      refreshImg();
-      
-      //refreshZoom(src, form, image);
-      //return false;
+      refreshZoom(src, form, image);
   }
 
   function fillDate(date, default_date) {
@@ -186,7 +211,7 @@ function refreshZoom(query, form, image, divOverlay) {
         break;
       case 1: 
         endZoom(event);
-        break;			
+        break;          
     }
   }
   
