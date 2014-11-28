@@ -42,3 +42,8 @@ ul.groupview, ul.groupview ul {
    display: block;
    float: left;
 }
+
+#category-period {
+    padding-right: 4px;
+    padding-left: 4px;
+}

@@ -3,9 +3,9 @@
     <div id="category-period" class="btn-group pull-right">
       <select class="form-control">
         <option value="day">Day</option>
-        <!-- option value="week">Week</option>
-        <option value="month">Month</option -->
-        <option value="year" selected="selected">Year</option>
+        <option value="week" selected="selected">Week</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
       </select>
     </div>
 
@@ -21,33 +21,24 @@
       <TMPL_LOOP NAME="CATEGORIES">
         <div class="tab-pane fade <TMPL_IF NAME="__FIRST__">in active</TMPL_IF>" id="<TMPL_VAR ESCAPE="HTML" NAME="NAME">">
           <TMPL_LOOP NAME="SERVICES">
-          <!--
-            <div class="row">
-              <div class="col-md-6">
-                <a href="<TMPL_VAR NAME="URLX">">
-                  <img data-href="<TMPL_VAR NAME="ZOOMWEEK">" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-                   src="<TMPL_VAR NAME="IMGDAY">"
-                   alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
-                       <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
-                   <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="<TMPL_VAR NAME="URLX">">
-                  <img class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-                   src="<TMPL_VAR NAME="IMGWEEK">" 
-                   alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
-                   <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
-                   <TMPL_IF NAME="IMGWEEKHEIGHT">height="<TMPL_VAR NAME="IMGWEEKHEIGHT">"</TMPL_IF>/>
-                </a>
-              </div>
-            </div>
-          -->
+          
             <img data-href="<TMPL_VAR NAME="ZOOMDAY">" period="day" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
              src="<TMPL_VAR NAME="IMGDAY">"
              alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
                  <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
              <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
+             
+            <img data-href="<TMPL_VAR NAME="ZOOMWEEK">" period="week" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+             src="<TMPL_VAR NAME="IMGWEEK">"
+             alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+                 <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
+             <TMPL_IF NAME="IMGWEEKHEIGHT">height="<TMPL_VAR NAME="IMGWEEKHEIGHT">"</TMPL_IF>/>             
+             
+            <img data-href="<TMPL_VAR NAME="ZOOMMONTH">" period="month" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+             src="<TMPL_VAR NAME="IMGMONTH">"
+             alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+                 <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF> 
+             <TMPL_IF NAME="IMGMONTHHEIGHT">height="<TMPL_VAR NAME="IMGMONTHHEIGHT">"</TMPL_IF>/>
                        
             <img data-href="<TMPL_VAR NAME="ZOOMYEAR">" period="year" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
              src="<TMPL_VAR NAME="IMGYEAR">"
@@ -61,21 +52,27 @@
     </div>
 
 <script type="text/javascript">
+
+function showImageForPeriod() {
+  var period = $('#category-period option:selected').val();
+  $.each([ "day", "week", "month", "year" ], function( index, value ) {
+    if(value==period) {
+      $("div[period='" + value + "']" ).show();
+    } else {
+      $("div[period='" + value + "']" ).hide();
+    }
+  });
+}
+  
 $( document ).ready(function() {
 
+  //Move period selector if needed
+  $('#category-period').appendTo('#largeset-nav')
+  
+  //Set event on period selector
+  $('#category-period').change(showImageForPeriod);
 
-  $('#category-period').change(function(){
-    var period = $('#category-period option:selected').val();
-    $.each([ "day", "week", "month", "year" ], function( index, value ) {
-      if(value==period) {
-        $("div[period='" + value + "']" ).show();
-      } else {
-        $("div[period='" + value + "']" ).hide();
-      }
-    });
-  });
-
-
+  //Prepare DOM structure
   $('div.tab-pane').each(function(parent_index){
       var parent = $(this);
       $.each([ "day", "week", "month", "year" ], function( index, value ) {
@@ -96,9 +93,8 @@ $( document ).ready(function() {
            } 
       }); 
        
-      $("div[period='year']" ).show();
+      showImageForPeriod();
   });
-
 });
 </script>
     
