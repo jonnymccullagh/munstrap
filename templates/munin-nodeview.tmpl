@@ -23,25 +23,25 @@
           <TMPL_LOOP NAME="SERVICES">
           
             <img data-href="<TMPL_VAR NAME="ZOOMDAY">" period="day" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-             src="<TMPL_VAR NAME="IMGDAY">"
+             src-lazy="<TMPL_VAR NAME="IMGDAY">"
              alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
                  <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
              <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
              
             <img data-href="<TMPL_VAR NAME="ZOOMWEEK">" period="week" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-             src="<TMPL_VAR NAME="IMGWEEK">"
+             src-lazy="<TMPL_VAR NAME="IMGWEEK">"
              alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
                  <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
              <TMPL_IF NAME="IMGWEEKHEIGHT">height="<TMPL_VAR NAME="IMGWEEKHEIGHT">"</TMPL_IF>/>             
              
             <img data-href="<TMPL_VAR NAME="ZOOMMONTH">" period="month" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-             src="<TMPL_VAR NAME="IMGMONTH">"
+             src-lazy="<TMPL_VAR NAME="IMGMONTH">"
              alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
                  <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF> 
              <TMPL_IF NAME="IMGMONTHHEIGHT">height="<TMPL_VAR NAME="IMGMONTHHEIGHT">"</TMPL_IF>/>
                        
             <img data-href="<TMPL_VAR NAME="ZOOMYEAR">" period="year" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-             src="<TMPL_VAR NAME="IMGYEAR">"
+             src-lazy="<TMPL_VAR NAME="IMGYEAR">"
              alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
                  <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF> 
              <TMPL_IF NAME="IMGYEARHEIGHT">height="<TMPL_VAR NAME="IMGYEARHEIGHT">"</TMPL_IF>/>
@@ -53,11 +53,32 @@
 
 <script type="text/javascript">
 
+<TMPL_IF NAME="__THIS_IS_A_COMMENT__">
+
+var graph = [];
+<TMPL_LOOP NAME="CATEGORIES">
+graph.push({tab:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">',active:<TMPL_IF NAME="__FIRST__">1<TMPL_ELSE>0</TMPL_IF>});
+    <TMPL_LOOP NAME="SERVICES">
+graph.push({period:'day',name:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">', data:'<TMPL_VAR NAME="ZOOMDAY">', state:'<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>', src:'<TMPL_VAR NAME="IMGDAY">', alt:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">' <TMPL_IF NAME="IMGDAYWIDTH">,width:'<TMPL_VAR NAME="IMGDAYWIDTH">'</TMPL_IF> <TMPL_IF NAME="IMGDAYHEIGHT">,height:'<TMPL_VAR NAME="IMGDAYHEIGHT">'</TMPL_IF> });
+graph.push({period:'week',name:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">', data:'<TMPL_VAR NAME="ZOOMWEEK">', state:'<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>', src:'<TMPL_VAR NAME="IMGWEEK">', alt:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">' <TMPL_IF NAME="IMGWEEKWIDTH">,width:'<TMPL_VAR NAME="IMGWEEKWIDTH">'</TMPL_IF> <TMPL_IF NAME="IMGWEEKHEIGHT">,height:'<TMPL_VAR NAME="IMGWEEKHEIGHT">'</TMPL_IF> });
+graph.push({period:'month',name:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">', data:'<TMPL_VAR NAME="ZOOMMONTH">', state:'<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>', src:'<TMPL_VAR NAME="IMGMONTH">', alt:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">' <TMPL_IF NAME="IMGMONTHWIDTH">,width:'<TMPL_VAR NAME="IMGMONTHWIDTH">'</TMPL_IF> <TMPL_IF NAME="IMGMONTHHEIGHT">,height:'<TMPL_VAR NAME="IMGMONTHHEIGHT">'</TMPL_IF> });
+graph.push({period:'year',name:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">', data:'<TMPL_VAR NAME="ZOOMYEAR">', state:'<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>', src:'<TMPL_VAR NAME="IMGYEAR">', alt:'<TMPL_VAR ESCAPE="HTML" NAME="NAME">' <TMPL_IF NAME="IMGYEARWIDTH">,width:'<TMPL_VAR NAME="IMGYEARWIDTH">'</TMPL_IF> <TMPL_IF NAME="IMGYEARHEIGHT">,height:'<TMPL_VAR NAME="IMGYEARHEIGHT">'</TMPL_IF> });
+    </TMPL_LOOP>
+</TMPL_LOOP>
+
+</TMPL_IF>
+
 function showImageForPeriod() {
   var period = $('#category-period option:selected').val();
   $.each([ "day", "week", "month", "year" ], function( index, value ) {
     if(value==period) {
-      $("div[period='" + value + "']" ).show();
+      $("div[period='" + value + "'] > div > img").each(function(){
+        if($(this).attr('src-lazy') !== 'undefined') {
+          $(this).attr('src', $(this).attr('src-lazy'));
+          $(this).removeAttr('src-lazy');
+        }
+      });
+      $("div[period='" + value + "']" ).fadeIn('fast');
     } else {
       $("div[period='" + value + "']" ).hide();
     }
@@ -72,7 +93,7 @@ $( document ).ready(function() {
   //Set event on period selector
   $('#category-period').change(showImageForPeriod);
 
-  //Prepare DOM structure
+  //Prepare DOM structure but keep image without src and div hidden
   $('div.tab-pane').each(function(parent_index){
       var parent = $(this);
       $.each([ "day", "week", "month", "year" ], function( index, value ) {
@@ -92,9 +113,10 @@ $( document ).ready(function() {
               parent.append(divRow);
            } 
       }); 
-       
-      showImageForPeriod();
   });
+  
+  //Show image for current period
+  showImageForPeriod();
 });
 </script>
     

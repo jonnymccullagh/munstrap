@@ -11,20 +11,69 @@
         
         <div class="row">
           <div class="col-md-12">
+          
+
             <form class="form-horizontal" role="form" name="zoom_form" id="zoom_form">
-                  <input type="hidden" class="form-control" name="plugin_name" id="plugin_name">
-                  <input type="hidden" class="form-control" name="start_iso8601" id="start_iso8601">
-                  <input type="hidden" class="form-control" name="stop_iso8601" id="stop_iso8601">
-                  <input type="hidden" class="form-control" name="start_epoch" id="start_epoch">
-                  <input type="hidden" class="form-control" name="stop_epoch" id="stop_epoch">
-                  <input type="hidden" class="form-control" name="lower_limit" id="lower_limit">
-                  <input type="hidden" class="form-control" name="upper_limit" id="upper_limit">
-                  <input type="hidden" class="form-control" name="size_x" id="size_x">
-                  <input type="hidden" class="form-control" name="size_y" id="size_y">
-                  <input type=hidden name="cgiurl_graph"/>
-                  <button type="button" class="btn btn-warning" name="btnReset">Reset</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </form>
+              <div id="graph-detail" style="display:none;">
+                  <div class="form-group">
+                    <label for="plugin_name" class="col-sm-2 control-label">Plugin Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="plugin_name" id="plugin_name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="start_iso8601" class="col-sm-2 control-label">Time Start/Stop</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="start_iso8601" id="start_iso8601">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="stop_iso8601" id="stop_iso8601">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="start_epoch" class="col-sm-2 control-label">Epoch Start/Stop</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="start_epoch" id="start_epoch">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="stop_epoch" id="stop_epoch">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lower_limit" class="col-sm-2 control-label">Limit Low/High</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="lower_limit" id="lower_limit">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="upper_limit" id="upper_limit">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="size_x" class="col-sm-2 control-label">Width/Height</label>
+                    <div class="col-sm-5">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="size_x" id="size_x">
+                        <span class="input-group-addon">px</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="size_y" id="size_y">
+                        <span class="input-group-addon">px</span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <input type=hidden name="cgiurl_graph"/>
+                    <!-- button type="submit" class="btn btn-success">Refresh</button -->
+                    <button type="button" class="btn btn-warning" name="btnReset">Reset</button>
+                    <button type="button" class="btn btn-default" onclick="javascript:$('#graph-detail').toggle();" >Toggle form</button>                    
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                    
+                  </div>
+              </div>
+            </form>          
           </div>
         </div>
         
