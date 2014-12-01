@@ -1,32 +1,60 @@
 <TMPL_INCLUDE NAME="partial/head.tmpl">
 
     <h2>Comparison: month</h2>
-    <TMPL_LOOP NAME="CATEGORIES">
-      <h3 id="<TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME">"><TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME"></h3>
-      <TMPL_LOOP NAME="SERVICES">
-        <div class="row">
-          <TMPL_LOOP NAME="NODES">
-            <div class="col-md-6">
-              <a href="<TMPL_VAR ESCAPE="URL" NAME="NODENAME">/index.html"><TMPL_VAR ESCAPE="HTML" NAME="NODENAME"></a>
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                  <TMPL_IF NAME="URL1"><a <TMPL_IF NAME="STATE_WARNING">class="warn"</TMPL_IF>
-                    <TMPL_IF NAME="STATE_CRITICAL">class="crit"</TMPL_IF> href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URL">">
+    <div class="btn-group pull-right" id="largeset-nav">
+      <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+        Periods for this node <span class="caret"></span>
+      </button>
+      <ul role="menu" class="dropdown-menu">
+          <li><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html">day</a></li>
+          <li><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html">week</a></li>
+          <li><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html">month</a></li>
+          <li><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html">year</a></li>
+      </ul>    
+    </div>
+    <ul id="tabs" class="nav nav-tabs tab-title" data-tabs="tabs">
+      <TMPL_LOOP NAME="CATEGORIES">
+        <li <TMPL_IF NAME="__FIRST__"> class="active" </TMPL_IF>>
+    <a href="#<TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME">" data-toggle="tab"><TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME"></a>
+        </li>
+      </TMPL_LOOP>
+    </ul>
+
+    <div id="my-tab-content" class="tab-content">    
+    
+      <TMPL_LOOP NAME="CATEGORIES">
+        
+        <div class="tab-pane fade <TMPL_IF NAME="__FIRST__">in active</TMPL_IF>" id="<TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME">">
+        
+          <TMPL_LOOP NAME="SERVICES">
+            <div class="row">
+              <TMPL_LOOP NAME="NODES">
+                <div class="col-md-6">
+                  <a href="<TMPL_VAR ESCAPE="URL" NAME="NODENAME">/index.html"><TMPL_VAR ESCAPE="HTML" NAME="NODENAME"></a>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                      <TMPL_IF NAME="URL1"><a <TMPL_IF NAME="STATE_WARNING">class="warn"</TMPL_IF>
+                        <TMPL_IF NAME="STATE_CRITICAL">class="crit"</TMPL_IF> href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URL">">
+                      </TMPL_IF>
+                      <TMPL_VAR ESCAPE="HTML" NAME="LABEL">
+                      <TMPL_IF NAME="URL1"></a></TMPL_IF>
+                  <TMPL_IF NAME="CIMGMONTH">
+                    <br/>
+                    <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URL">">
+                      <img src="<TMPL_VAR NAME="CIMGMONTH">" alt="<TMPL_VAR ESCAPE="HTML" NAME="LABEL">"
+                       class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+                       <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF> 
+                       <TMPL_IF NAME="IMGMONTHHEIGHT">height="<TMPL_VAR NAME="IMGMONTHHEIGHT">"</TMPL_IF>/>
+                    </a>
                   </TMPL_IF>
-                  <TMPL_VAR ESCAPE="HTML" NAME="LABEL">
-                  <TMPL_IF NAME="URL1"></a></TMPL_IF>
-              <TMPL_IF NAME="CIMGMONTH">
-                <br/>
-                <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URL">">
-                  <img src="<TMPL_VAR NAME="CIMGMONTH">" alt="<TMPL_VAR ESCAPE="HTML" NAME="LABEL">"
-                   class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-                   <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF> 
-                   <TMPL_IF NAME="IMGMONTHHEIGHT">height="<TMPL_VAR NAME="IMGMONTHHEIGHT">"</TMPL_IF>/>
-                </a>
-              </TMPL_IF>
+                </div>
+              </TMPL_LOOP>
             </div>
           </TMPL_LOOP>
+          
         </div>
+        
       </TMPL_LOOP>
-    </TMPL_LOOP>
+    
+    </div>
 	
 <TMPL_INCLUDE NAME="partial/footer.tmpl">

@@ -23,11 +23,17 @@ img#zoom_image{
   margin-bottom: 15px;
 }
 
+
+a:link {color: blue;}
+a:visited {color: purple;}
+a:hover {color: red;}
+a:active
+
 .link-domain {
 	font-size: 1.4em;	
 	color: #660066;
 }
-.link-host {
+.link-host  {
 	font-size: 1.1em;
 	color: #800080;
 }
@@ -46,4 +52,12 @@ ul.groupview, ul.groupview ul {
 #category-period {
     padding-right: 4px;
     padding-left: 4px;
+}
+
+.tab-title {
+    text-transform: capitalize;
+}
+
+.comparison {
+    text-transform: capitalize;
 }
