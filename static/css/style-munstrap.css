@@ -24,16 +24,11 @@ img#zoom_image{
 }
 
 
-a:link {color: blue;}
-a:visited {color: purple;}
-a:hover {color: red;}
-a:active
-
-.link-domain {
+.link-domain a.link-domain:link a.link-domain:visited a.link-domain:hover a.link-domain:focus  {
 	font-size: 1.4em;	
 	color: #660066;
 }
-.link-host  {
+.link-host a.link-host:link a.link-host:visited a.link-host:hover a.link-host:focus  {
 	font-size: 1.1em;
 	color: #800080;
 }
