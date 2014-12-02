@@ -87,3 +87,8 @@ ul.groupview, ul.groupview ul {
 .badge-inverse:hover {
   background-color: #1a1a1a;
 }
+
+.div-home-badges {
+    display:inline;
+    white-space: nowrap;
+}
