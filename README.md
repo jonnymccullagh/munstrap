@@ -1,9 +1,9 @@
 Munstrap
 ========
 
-Alternative Munin 2.x templates based on Twitter Bootstrap 3
-From February 2015 the Munstrap template has been added to the [munin-monitoring/contrib](https://github.com/munin-monitoring/contrib) repo.
-Please use that location in future.
+Alternative Munin 2.x templates based on Twitter Bootstrap 3.   
+### From February 2015 the Munstrap template has been added to the [munin-monitoring/contrib](https://github.com/munin-monitoring/contrib) repo.
+### Please use that location in future.
 
 ![Sample](sample.jpg)
 
