@@ -16,66 +16,82 @@
 		<TMPL_UNLESS NAME="MULTIGRAPH">
 		  <li  <TMPL_IF NAME="__LAST__">class="last"</TMPL_IF>>
 			  <span class="glyphicon glyphicon-folder-open"></span>	
-			  <a href="<TMPL_VAR NAME="URL">" class="link-domain"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
-			  <TMPL_IF NAME="COMPARE"> [ 
-					<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html">day</a> 
-					<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html">week</a> 
-					<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html">month</a> 
-					<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html">year</a> ]
+			  <a href="<TMPL_VAR NAME="URL">" class="btn link-domain"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
+			  <TMPL_IF NAME="COMPARE">
+			  <div class="div-home-badges">
+					<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html" title="Comparison in a day"><span class="badge badge-info">day</span></a> 
+					<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html" title="Comparison in a week"><span class="badge badge-info">week</span></a> 
+					<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html" title="Comparison in a month"><span class="badge badge-info">month</span></a> 
+					<a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html" title="Comparison in a year"><span class="badge badge-info">year</span></a>
+				</div>
 				</TMPL_IF>
-				<TMPL_IF NAME="NCATEGORIES">[ 
-          <TMPL_LOOP NAME="CATEGORIES">
-            <a <TMPL_IF NAME="STATE_WARNING">class="text-warning"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="text-critical"</TMPL_IF> href="<TMPL_VAR NAME="URL">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
-          </TMPL_LOOP> ]
+				<TMPL_IF NAME="NCATEGORIES"> 
+				<div class="div-home-badges">
+				  <TMPL_LOOP NAME="CATEGORIES">
+            <a href="<TMPL_VAR NAME="URL">"><span class="badge <TMPL_IF NAME="STATE_WARNING">badge-warning </TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">badge-error </TMPL_IF>"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></span></a>
+          </TMPL_LOOP>
+        <div>
         </TMPL_IF>
 			  <ul>
           <TMPL_LOOP NAME="GROUPS">
             <TMPL_UNLESS NAME="MULTIGRAPH">
               <li <TMPL_IF NAME="__LAST__">class="last"</TMPL_IF>>
-		<span class="glyphicon glyphicon-chevron-right"></span>
-                <a href="<TMPL_VAR NAME="URL">" class="link-host"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
-                <TMPL_IF NAME="COMPARE"> [ 
-                  <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html">day</a> 
-                  <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html">week</a> 
-                  <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html">month</a> 
-                  <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html">year</a> ]
+		<span class="glyphicon glyphicon-tasks"></span>
+                <a href="<TMPL_VAR NAME="URL">" class="btn link-host"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
+                <TMPL_IF NAME="COMPARE">
+                <div class="div-home-badges">
+                  <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html" title="Comparison in a day"><span class="badge badge-info">day</span></a> 
+                  <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html" title="Comparison in a week"><span class="badge badge-info">week</span></a> 
+                  <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html" title="Comparison in a month"><span class="badge badge-info">month</span></a> 
+                  <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html" title="Comparison in a year"><span class="badge badge-info">year</span></a>
+                </div>
                 </TMPL_IF>
-                <TMPL_IF NAME="NCATEGORIES">[ 
+                <TMPL_IF NAME="NCATEGORIES"> 
+                <div class="div-home-badges">
                   <TMPL_LOOP NAME="CATEGORIES">
-                    <a <TMPL_IF NAME="STATE_WARNING">class="text-warning"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="text-critical"</TMPL_IF> href="<TMPL_VAR NAME="URL">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a> 
-                  </TMPL_LOOP>]
+                    <a href="<TMPL_VAR NAME="URL">"><span class="badge <TMPL_IF NAME="STATE_WARNING">badge-warning </TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">badge-error </TMPL_IF>"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></span></a>
+                  </TMPL_LOOP>
+                <div>
                 </TMPL_IF>
                 <ul>
                   <TMPL_LOOP NAME="GROUPS">
                     <TMPL_UNLESS NAME="MULTIGRAPH">
                       <li <TMPL_IF NAME="__LAST__">class="last"</TMPL_IF>>
                       <a href="<TMPL_VAR NAME="URL">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
-                      <TMPL_IF NAME="COMPARE"> 
-                        <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html">day</a> 
-                        <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html">week</a> 
-                        <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html">month</a> 
-                        <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html">year</a> ]
+                      <TMPL_IF NAME="COMPARE">
+                      <div class="div-home-badges">
+                        <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html" title="Comparison in a day"><span class="badge badge-info">day</span></a> 
+                        <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html" title="Comparison in a week"><span class="badge badge-info">week</span></a> 
+                        <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html" title="Comparison in a month"><span class="badge badge-info">month</span></a> 
+                        <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html" title="Comparison in a year"><span class="badge badge-info">year</span></a>
+                      </div>
                       </TMPL_IF>
-                      <TMPL_IF NAME="NCATEGORIES">[ 
+                      <TMPL_IF NAME="NCATEGORIES"> 
+                      <div class="div-home-badges">
                         <TMPL_LOOP NAME="CATEGORIES">
-                          <a <TMPL_IF NAME="STATE_WARNING">class="text-warning"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="text-critical"</TMPL_IF> href="<TMPL_VAR NAME="URL">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a> 
-                        </TMPL_LOOP>]
+                          <a href="<TMPL_VAR NAME="URL">"><span class="badge <TMPL_IF NAME="STATE_WARNING">badge-warning </TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">badge-error </TMPL_IF>"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></span></a>
+                        </TMPL_LOOP>
+                      <div>
                       </TMPL_IF>
                       <ul>
                         <TMPL_LOOP NAME="GROUPS">
                           <TMPL_UNLESS NAME="MULTIGRAPH">
                             <li <TMPL_IF NAME="__LAST__">class="last"</TMPL_IF>>
                             <a href="<TMPL_VAR NAME="URL">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
-                            <TMPL_IF NAME="COMPARE"> [ 
-                              <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html">day</a> 
-                              <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html">week</a> 
-                              <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html">month</a> 
-                              <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html">year</a> ]
+                            <TMPL_IF NAME="COMPARE">
+                            <div class="div-home-badges"> 
+                              <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-day.html" title="Comparison in a day"><span class="badge badge-info">day</span></a> 
+                              <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-week.html" title="Comparison in a week"><span class="badge badge-info">week</span></a> 
+                              <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-month.html" title="Comparison in a month"><span class="badge badge-info">month</span></a> 
+                              <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_LOOP NAME="PATH"><TMPL_IF NAME="pathname"><TMPL_VAR ESCAPE="URL" NAME="PATHNAME">/</TMPL_IF></TMPL_LOOP>comparison-year.html" title="Comparison in a year"><span class="badge badge-info">year</span></a>
+                            </div>
                             </TMPL_IF>
-                            <TMPL_IF NAME="NCATEGORIES">[ 
+                            <TMPL_IF NAME="NCATEGORIES"> 
+                            <div class="div-home-badges">
                               <TMPL_LOOP NAME="CATEGORIES">
-                                <a <TMPL_IF NAME="STATE_WARNING">class="text-warning"</TMPL_IF> <TMPL_IF NAME="STATE_CRITICAL">class="text-critical"</TMPL_IF> href="<TMPL_VAR NAME="URL">"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
-                              </TMPL_LOOP> ]
+                                <a href="<TMPL_VAR NAME="URL">"><span class="badge <TMPL_IF NAME="STATE_WARNING">badge-warning </TMPL_IF><TMPL_IF NAME="STATE_CRITICAL">badge-error </TMPL_IF>"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></span></a>
+                              </TMPL_LOOP>
+                            <div>
                             </TMPL_IF>
                           </TMPL_UNLESS>
                         </TMPL_LOOP>

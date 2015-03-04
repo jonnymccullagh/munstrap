@@ -1,6 +1,15 @@
 <TMPL_INCLUDE NAME="partial/head.tmpl">
 
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <div id="category-period" class="btn-group pull-right">
+      <select class="form-control">
+        <option value="day">Period: day</option>
+        <option value="week" selected="selected">Period: week</option>
+        <option value="month">Period: month</option>
+        <option value="year">Period: year</option>
+      </select>
+    </div>
+
+    <ul id="tabs" class="nav nav-tabs tab-title" data-tabs="tabs">
       <TMPL_LOOP NAME="CATEGORIES">
         <li <TMPL_IF NAME="__FIRST__"> class="active" </TMPL_IF>>
 	  <a href="#<TMPL_VAR ESCAPE="HTML" NAME="NAME">" data-toggle="tab"><TMPL_VAR ESCAPE="HTML" NAME="NAME"></a>
@@ -12,29 +21,90 @@
       <TMPL_LOOP NAME="CATEGORIES">
         <div class="tab-pane fade <TMPL_IF NAME="__FIRST__">in active</TMPL_IF>" id="<TMPL_VAR ESCAPE="HTML" NAME="NAME">">
           <TMPL_LOOP NAME="SERVICES">
-            <div class="row">
-              <div class="col-md-6">
-                <a href="<TMPL_VAR NAME="URLX">">
-                  <img class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-                   src="<TMPL_VAR NAME="IMGDAY">"
-                   alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
-                       <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
-                   <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
-                </a>
-              </div>
-              <div class="col-md-6">
-                <a href="<TMPL_VAR NAME="URLX">">
-                  <img class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-                   src="<TMPL_VAR NAME="IMGWEEK">" 
-                   alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
-                   <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
-                   <TMPL_IF NAME="IMGWEEKHEIGHT">height="<TMPL_VAR NAME="IMGWEEKHEIGHT">"</TMPL_IF>/>
-                </a>
-              </div>
-            </div>
+          
+            <img data-href="<TMPL_VAR NAME="ZOOMDAY">" period="day" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+             src-lazy="<TMPL_VAR NAME="IMGDAY">"
+             alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+                 <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
+             <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
+             
+            <img data-href="<TMPL_VAR NAME="ZOOMWEEK">" period="week" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+             src-lazy="<TMPL_VAR NAME="IMGWEEK">"
+             alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+                 <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
+             <TMPL_IF NAME="IMGWEEKHEIGHT">height="<TMPL_VAR NAME="IMGWEEKHEIGHT">"</TMPL_IF>/>             
+             
+            <img data-href="<TMPL_VAR NAME="ZOOMMONTH">" period="month" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+             src-lazy="<TMPL_VAR NAME="IMGMONTH">"
+             alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+                 <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF> 
+             <TMPL_IF NAME="IMGMONTHHEIGHT">height="<TMPL_VAR NAME="IMGMONTHHEIGHT">"</TMPL_IF>/>
+                       
+            <img data-href="<TMPL_VAR NAME="ZOOMYEAR">" period="year" class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
+             src-lazy="<TMPL_VAR NAME="IMGYEAR">"
+             alt="<TMPL_VAR ESCAPE="HTML" NAME="NAME">" 
+                 <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF> 
+             <TMPL_IF NAME="IMGYEARHEIGHT">height="<TMPL_VAR NAME="IMGYEARHEIGHT">"</TMPL_IF>/>
+                           
           </TMPL_LOOP>
         </div>
       </TMPL_LOOP>
     </div>
+
+<script type="text/javascript">
+
+function showImageForPeriod() {
+  var period = $('#category-period option:selected').val();
+  $.each([ "day", "week", "month", "year" ], function( index, value ) {
+    if(value==period) {
+      $("div[period='" + value + "'] > div > img").each(function(){
+        if($(this).attr('src-lazy') !== 'undefined') {
+          $(this).attr('src', $(this).attr('src-lazy'));
+          $(this).removeAttr('src-lazy');
+        }
+      });
+      $("div[period='" + value + "']" ).fadeIn('fast');
+    } else {
+      $("div[period='" + value + "']" ).hide();
+    }
+  });
+}
+  
+$( document ).ready(function() {
+
+  //Move period selector if needed
+  $('#category-period').appendTo('#largeset-nav')
+  
+  //Set event on period selector
+  $('#category-period').change(showImageForPeriod);
+
+  //Prepare DOM structure but keep image without src and div hidden
+  $('div.tab-pane').each(function(parent_index){
+      var parent = $(this);
+      $.each([ "day", "week", "month", "year" ], function( index, value ) {
+           var numImg = 0;      
+           var divRow = $("<div>").addClass("row").attr("style","display:none;").attr("period",value);
+           $(parent).children('img[period="' + value + '"]').each(function(){
+               divImg = $("<div>").addClass("col-md-6").append(this);
+               divRow.append(divImg);
+               if(numImg%2 == 1) {
+                   parent.append(divRow);
+                   divImg = false;
+                   divRow =$("<div>").addClass("row").attr("style","display:none;").attr("period",value);
+               }        
+               numImg++;
+           });
+           if(divImg) {
+              parent.append(divRow);
+           } 
+      }); 
+  });
+  
+  //Show image for current period
+  showImageForPeriod();
+});
+</script>
+    
+<TMPL_INCLUDE NAME="partial/zoom.tmpl"> 
 	
 <TMPL_INCLUDE NAME="partial/footer.tmpl">
