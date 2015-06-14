@@ -36,7 +36,7 @@
             <li><a href="<TMPL_VAR NAME="R_PATH">">Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Problems <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu scrollable-menu">
                 <li><a href="<TMPL_VAR NAME="R_PATH">/problems.html#critical"><span class="badge alert-danger pull-right"><TMPL_VAR NAME="NCRITICAL"></span>Critical</a></li>
                 <li><a href="<TMPL_VAR NAME="R_PATH">/problems.html#warnings"><span class="badge alert-warning pull-right"><TMPL_VAR NAME="NWARNING"></span>Warning</a></li>
                 <li><a href="<TMPL_VAR NAME="R_PATH">/problems.html#unknowns"><span class="badge alert-info pull-right"><TMPL_VAR NAME="NUNKNOWN"></span>Unknown</a></li>
@@ -44,7 +44,7 @@
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Groups <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu scrollable-menu">
                 <TMPL_LOOP NAME="ROOTGROUPS">
                   <li><a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URL">"><TMPL_VAR NAME="NAME"></a></li>
                 </TMPL_LOOP>
@@ -52,7 +52,7 @@
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hosts <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu scrollable-menu">
                 <TMPL_LOOP NAME="ROOTGROUPS">
                   <TMPL_LOOP NAME="GROUPS">
                     <TMPL_IF NAME="NCATEGORIES">
@@ -64,7 +64,7 @@
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
-              <ul class="dropdown-menu" style="min-width: 300px;">
+              <ul class="dropdown-menu scrollable-menu" style="min-width: 300px;">
                 <TMPL_LOOP NAME="GLOBALCATS">
                   <li>
                     <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URLDAY">"><TMPL_VAR NAME="NAME"></a> 

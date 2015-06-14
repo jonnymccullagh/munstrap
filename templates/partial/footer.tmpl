@@ -22,6 +22,11 @@
       $('.nav-tabs a').on('shown', function (e) {
         window.location.hash = e.target.hash;
       });
+      function set_scrollable_menu_height(){
+        $(".scrollable-menu").css("max-height", ($(window).height() - 50)+ "px");
+      }
+      set_scrollable_menu_height();
+      $( window ).resize(set_scrollable_menu_height);
     </script>
   </body>
 </html>
